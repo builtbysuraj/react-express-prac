@@ -1,11 +1,15 @@
-const express = require("express")
+const express = require('express')
 const app = express()
-PORT = 5000
+const PORT = 5000 || process.env.PORT
 
-app.use(express.json())
-
-// routers
-const mainRouters = require('./routes/MainRoutes')
-app.use(mainRouters)
-//LISTENING
-app.listen(PORT, console.log('express is working'))
+//template engine
+app.set('view engine', 'ejs')
+//static middleware / router 
+app.use(express.static('public'))
+//router
+const mainRoutes = require('./routes/MainRoutes')
+const productsRoute = require('./routes/ProductsRoute')
+app.use(mainRoutes)
+app.use(productsRoute)
+//Listening
+app.listen(PORT, console.log(`Express working`))

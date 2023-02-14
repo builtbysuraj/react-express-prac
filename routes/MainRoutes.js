@@ -1,11 +1,16 @@
-const router = require("express").Router()
+const router = require('express').Router()
 
-// index
 router.get('/', (req, res) => {
-  res.send('ello people')
+  res.render('index', {
+    title: 'Home Title'
+  })
 })
 
-//about
 router.get('/about', (req, res) => {
-  res.send('ello people its about')
+  res.render('about', {
+    title: 'About Title'
+  })
 })
+
+
+module.exports = router
